@@ -35,7 +35,9 @@ public class UsersController {
     @GetMapping("/edit")
     public String updateUser(@RequestParam(name = "id", required = false, defaultValue = "0") Long id, Model model) {
         User user = userService.getUser(id);
-        if (user == null) return "redirect:/users/create";
+        if (user == null) {
+            return "redirect:/users/create";
+        }
         model.addAttribute("user", user);
         model.addAttribute("infoText", String.format("Измените данные пользователя с id=%d:", id));
         return "edit";
